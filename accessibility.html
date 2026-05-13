@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Accessibility Statement — Aanvi Karmakar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=20260513-3">
+    <style>
+      .legal-page {
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 120px clamp(20px, 5vw, 60px) 100px;
+      }
+      .legal-page h1 {
+        font-size: clamp(42px, 5vw, 72px);
+        font-weight: 700;
+        line-height: 0.9;
+        margin: 0 0 12px;
+        color: var(--red);
+      }
+      .legal-meta {
+        font-family: var(--sans);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--red);
+        opacity: 0.6;
+        margin: 0 0 64px;
+      }
+      .legal-page h2 {
+        font-size: clamp(22px, 2.4vw, 30px);
+        font-weight: 600;
+        margin: 56px 0 16px;
+        color: var(--red);
+        line-height: 1;
+      }
+      .legal-page p, .legal-page li {
+        font-family: var(--sans);
+        font-size: 14px;
+        line-height: 1.7;
+        color: var(--ink);
+        margin: 0 0 14px;
+      }
+      .legal-page ul {
+        padding-left: 20px;
+        margin: 0 0 14px;
+      }
+      .legal-page a { color: var(--red); }
+      .legal-divider {
+        border: none;
+        border-top: 1px solid rgba(200,36,25,0.2);
+        margin: 56px 0 0;
+      }
+      .back-link {
+        display: inline-block;
+        font-family: var(--sans);
+        font-size: 12px;
+        text-decoration: none;
+        color: var(--red);
+        border-bottom: 1px solid currentColor;
+        padding-bottom: 2px;
+        margin-bottom: 48px;
+      }
+      .a11y-status {
+        display: inline-block;
+        font-family: var(--sans);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 6px 14px;
+        border: 1px solid var(--red);
+        color: var(--red);
+        margin-bottom: 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" aria-label="Primary navigation">
+      <a class="brand" href="./index.html" aria-label="Aanvi Karmakar home">Aanvi Karmakar</a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="./index.html#resume">Resume</a>
+        <a href="./index.html#measurements">Measurements</a>
+        <a href="./index.html#contact">Contact</a>
+        <a class="nav-cta" href="./index.html#contact">Get in Touch</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="legal-page">
+        <a class="back-link" href="./index.html">← Back to Portfolio</a>
+        <h1>Accessibility<br>Statement</h1>
+        <p class="legal-meta">Last updated: May 2026</p>
+
+        <span class="a11y-status">WCAG 2.1 Level AA — Target Standard</span>
+
+        <p>I am committed to making this portfolio website accessible to everyone, including people with disabilities. This statement outlines the steps taken and the current accessibility status of aanvikarmakar.com.</p>
+
+        <h2>Our Commitment</h2>
+        <p>This website aims to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1, Level AA</strong>. These guidelines explain how to make web content more accessible to people with disabilities, including those who use assistive technologies such as screen readers, keyboard navigation, or voice control.</p>
+
+        <h2>What We Have Done</h2>
+        <ul>
+          <li><strong>Semantic HTML:</strong> Pages use meaningful, structured HTML5 elements (headings, landmarks, lists) to support screen reader navigation.</li>
+          <li><strong>Alt text:</strong> All portfolio images include descriptive alternative text for screen reader users.</li>
+          <li><strong>Keyboard navigation:</strong> All interactive elements — links, buttons, video controls — are reachable and operable via keyboard alone.</li>
+          <li><strong>Focus indicators:</strong> Visible focus outlines are present on interactive elements.</li>
+          <li><strong>Colour contrast:</strong> Text and background colour combinations meet or exceed WCAG AA contrast ratios.</li>
+          <li><strong>Responsive design:</strong> The website is fully usable on mobile, tablet, and desktop screen sizes.</li>
+          <li><strong>Skip navigation:</strong> The page structure allows assistive technologies to skip repetitive content.</li>
+          <li><strong>Video accessibility:</strong> The showreel video includes player controls and is muted by default to avoid unexpected audio.</li>
+          <li><strong>Reduced motion:</strong> Animations are subtle and do not rely on motion to convey information.</li>
+          <li><strong>ARIA labels:</strong> Key sections and navigation elements include ARIA labels for screen reader context.</li>
+        </ul>
+
+        <h2>Known Limitations</h2>
+        <p>While I strive for full accessibility, some limitations currently exist:</p>
+        <ul>
+          <li><strong>Video captions:</strong> The showreel video does not currently include closed captions or a transcript. I am working to address this.</li>
+          <li><strong>Complex images:</strong> Some editorial photographs convey mood and artistic intent that may be difficult to fully describe in alt text.</li>
+          <li><strong>Third-party embeds:</strong> Any future third-party embedded content may not meet the same accessibility standards as the core website.</li>
+        </ul>
+
+        <h2>Technical Approach</h2>
+        <p>This website is built with:</p>
+        <ul>
+          <li>Valid, semantic HTML5</li>
+          <li>CSS for visual presentation only — content and structure are not dependent on stylesheets</li>
+          <li>Vanilla JavaScript for progressive enhancement — core content is accessible without JavaScript</li>
+          <li>No reliance on auto-playing audio or flashing content</li>
+        </ul>
+
+        <h2>Feedback &amp; Contact</h2>
+        <p>If you experience any difficulty accessing content on this website, or if you notice an accessibility issue I have not addressed, please contact me directly. I take all feedback seriously and will work to resolve issues promptly.</p>
+        <p>Email: <a href="mailto:hello@aanvikarmakar.com">hello@aanvikarmakar.com</a></p>
+        <p>I aim to respond to accessibility queries within 5 business days.</p>
+
+        <h2>Formal Complaints</h2>
+        <p>If you are not satisfied with my response to an accessibility concern, you may wish to contact the relevant national accessibility body in your country for further guidance.</p>
+
+        <h2>Review Schedule</h2>
+        <p>This statement is reviewed and updated annually, or whenever significant changes are made to the website. The current review date is May 2026.</p>
+
+        <hr class="legal-divider">
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <p><a href="./index.html#contact">Instagram</a><br><a href="./index.html#contact">Youtube</a><br><a href="./index.html#contact">Vimeo</a></p>
+        <p>For professional inquiries, bookings, and audition opportunities.</p>
+        <p><a href="./accessibility.html">Accessibility Statement</a><br><a href="./terms-conditions.html">Terms &amp; Conditions</a><br><a href="./privacy-policy.html">Privacy Policy</a></p>
+      </div>
+      <p class="copyright">© 2026 Aanvi Karmakar. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

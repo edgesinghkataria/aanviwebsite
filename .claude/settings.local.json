@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Control_Chrome__open_url"
+    ]
+  }
+}

@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'Ogg';
+  src: url('./fonts/ogg-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ogg';
+  src: url('./fonts/ogg-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
   --red: #c82419;
   --deep-red: #8f291f;
@@ -22,6 +36,14 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+  font-family: 'Ogg', serif;
+}
+
+h1 {
+  font-weight: 700;
 }
 
 @keyframes fadeInUp {
@@ -136,7 +158,9 @@ video {
 }
 
 .brand {
+  font-family: 'Ogg', serif;
   font-size: clamp(18px, 2vw, 24px);
+  font-weight: 700;
   line-height: 1;
   text-decoration: none;
 }
@@ -163,7 +187,7 @@ video {
   min-height: 100vh;
   isolation: isolate;
   overflow: hidden;
-  background: rgba(132, 39, 28, 0.88);
+  background: rgba(132, 39, 28, 0.40);
 }
 
 .hero::after {
@@ -275,6 +299,7 @@ video {
 .intro-card p,
 .script-label {
   margin: 0;
+  font-family: var(--serif);
   font-size: clamp(14px, 1.4vw, 17px);
   font-style: italic;
 }
