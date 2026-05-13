@@ -261,31 +261,41 @@ video {
 
 .intro-panel {
   position: relative;
-  min-height: 820px;
-  padding: 40px clamp(22px, 3vw, 44px);
+  min-height: 860px;
+  padding: 60px clamp(22px, 3vw, 44px);
   background: radial-gradient(circle at 62% 36%, #e11e18 0 20%, #c70f0b 36%, #300604 100%);
   overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .intro-image {
   position: absolute;
-  right: 5vw;
-  bottom: 0;
-  width: min(620px, 58vw);
-  height: 94%;
+  right: 0;
+  top: -5%;
+  bottom: -8%;
+  width: min(720px, 65vw);
+  height: 113%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
+  filter: drop-shadow(-40px 0 60px rgba(0, 0, 0, 0.35)) drop-shadow(-20px 30px 40px rgba(0, 0, 0, 0.25));
+  z-index: 0;
 }
 
 .intro-card {
   position: relative;
-  z-index: 1;
-  width: min(515px, 52vw);
+  z-index: 2;
+  width: min(560px, 55vw);
   margin-left: 4vw;
-  padding: 26px 28px 28px;
+  margin-right: auto;
+  padding: 40px 36px 42px;
   background: #f8dbe7;
-  box-shadow: var(--shadow-luxury);
+  box-shadow:
+    0 20px 60px rgba(68, 21, 35, 0.25),
+    0 10px 30px rgba(68, 21, 35, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   transition: all 0.8s var(--ease-subtle);
+  border-radius: 2px;
 }
 
 .intro-card h2 {
