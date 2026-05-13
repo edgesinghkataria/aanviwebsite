@@ -261,41 +261,39 @@ video {
 
 .intro-panel {
   position: relative;
-  min-height: 860px;
-  padding: 60px clamp(22px, 3vw, 44px);
+  min-height: 900px;
   background: radial-gradient(circle at 62% 36%, #e11e18 0 20%, #c70f0b 36%, #300604 100%);
   overflow: hidden;
-  display: flex;
-  align-items: center;
+  display: grid;
+  place-items: center;
 }
 
 .intro-image {
   position: absolute;
-  right: 0;
-  top: -5%;
-  bottom: -8%;
-  width: min(720px, 65vw);
-  height: 113%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
-  filter: drop-shadow(-40px 0 60px rgba(0, 0, 0, 0.35)) drop-shadow(-20px 30px 40px rgba(0, 0, 0, 0.25));
   z-index: 0;
 }
 
 .intro-card {
-  position: relative;
+  position: absolute;
+  left: clamp(24px, 4vw, 48px);
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 2;
-  width: min(560px, 55vw);
-  margin-left: 4vw;
-  margin-right: auto;
-  padding: 40px 36px 42px;
+  width: min(580px, 52vw);
+  max-width: 90%;
+  padding: 42px 40px 44px;
   background: #f8dbe7;
   box-shadow:
-    0 20px 60px rgba(68, 21, 35, 0.25),
-    0 10px 30px rgba(68, 21, 35, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 30px 80px rgba(0, 0, 0, 0.35),
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
   transition: all 0.8s var(--ease-subtle);
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 .intro-card h2 {
