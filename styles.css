@@ -261,11 +261,12 @@ video {
 
 .intro-panel {
   position: relative;
-  min-height: 900px;
+  height: 100vh;
   background: radial-gradient(circle at 62% 36%, #e11e18 0 20%, #c70f0b 36%, #300604 100%);
   overflow: hidden;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .intro-image {
