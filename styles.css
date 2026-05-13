@@ -163,7 +163,7 @@ video {
   min-height: 100vh;
   isolation: isolate;
   overflow: hidden;
-  background: #84271C;
+  background: rgba(132, 39, 28, 0.88);
 }
 
 .hero::after {
