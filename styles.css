@@ -163,7 +163,7 @@ video {
   min-height: 100vh;
   isolation: isolate;
   overflow: hidden;
-  background: #170d0d;
+  background: #84271C;
 }
 
 .hero::after {
@@ -185,8 +185,8 @@ video {
   height: 100%;
   object-fit: cover;
   object-position: 50% 28%;
-  background-color: #84271C;
-  filter: contrast(1.1) brightness(0.9);
+  mix-blend-mode: multiply;
+  filter: contrast(1.15) brightness(1.05);
 }
 
 .hero h1 {
