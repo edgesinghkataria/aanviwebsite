@@ -595,6 +595,11 @@ video {
   width: 100%;
   aspect-ratio: 2.24;
   object-fit: cover;
+  box-shadow:
+    0 18px 50px rgba(68, 21, 35, 0.18),
+    0 10px 25px rgba(68, 21, 35, 0.12);
+  transition: all 0.8s var(--ease-subtle);
+  border-radius: 1px;
 }
 
 .designer-media.trio {
@@ -607,6 +612,17 @@ video {
   width: 100%;
   aspect-ratio: 0.68;
   object-fit: cover;
+  box-shadow:
+    0 16px 45px rgba(68, 21, 35, 0.16),
+    0 8px 20px rgba(68, 21, 35, 0.1);
+  transition: all 0.8s var(--ease-subtle);
+  border-radius: 1px;
+}
+
+.designer-row:hover img {
+  box-shadow:
+    0 22px 60px rgba(68, 21, 35, 0.22),
+    0 12px 30px rgba(68, 21, 35, 0.15);
 }
 
 .designer-text {
