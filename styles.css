@@ -392,13 +392,14 @@ video {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 650px;
+  min-height: 800px;
+  padding: 60px;
 }
 
 .reel-video {
   position: relative;
   z-index: 1;
-  width: min(330px, 56vw);
+  width: min(450px, 70vw);
   aspect-ratio: 9 / 16;
   background: #230d0e;
   object-fit: cover;
