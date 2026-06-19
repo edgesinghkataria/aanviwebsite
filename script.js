@@ -1,9 +1,3 @@
-/*
-  Replace this array whenever you have the final picture URLs.
-
-  Order is exactly the visual reading order of the page:
-  top section first, then left-to-right within each row, then the next row down.
-*/
 const portfolioImages = [
   "https://assets.aanvikarmakar.com/IMG_1344.jpeg",
   "https://assets.aanvikarmakar.com/IMG_1452.jpeg",
@@ -41,7 +35,8 @@ const imageSlotOrder = [
   "designer3",
   "designer4",
   "designer5",
-  "designer6"
+  "designer6",
+  "identityPortrait"
 ];
 
 const characterCaptions = [
@@ -51,15 +46,35 @@ const characterCaptions = [
   "In the details lies the story - expression, light, and presence",
   "In a world full of noise, elegance whispers",
   "A frame of couture. A soul of fire",
-  "No caption needed - this is what fashion sounds like when it screams",
-  "Floral fantasies and sunlight serenades"
+  "No caption needed - this is what fashion sounds like when it screams"
 ];
 
+const galleryRatios = ["0.76", "0.9", "0.7", "1.08", "0.82", "0.72", "0.95"];
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const getImage = (slotName) => portfolioImages[imageSlotOrder.indexOf(slotName)] || "";
+const getHeaderOffset = () => (document.querySelector(".site-header")?.getBoundingClientRect().height || 0) + 22;
+const scrollToHash = (hash, updateHistory = true) => {
+  if (!hash || hash === "#") return false;
 
-// Load portfolio images
+  const target = document.querySelector(hash);
+  if (!target) return false;
+
+  const top = target.getBoundingClientRect().top + window.scrollY - getHeaderOffset();
+  window.scrollTo({
+    top: Math.max(0, top),
+    behavior: prefersReducedMotion ? "auto" : "smooth"
+  });
+
+  if (updateHistory) {
+    history.pushState(null, "", hash);
+  }
+
+  return true;
+};
+
 document.querySelectorAll(".js-sequence-image").forEach((image) => {
   const src = getImage(image.dataset.slot);
+
   if (!src) {
     image.classList.add("is-empty");
     return;
@@ -68,183 +83,205 @@ document.querySelectorAll(".js-sequence-image").forEach((image) => {
   image.src = src;
 });
 
-// Load video
 document.querySelectorAll("[data-video-slot]").forEach((video) => {
   const src = getImage(video.dataset.videoSlot);
+
   if (src) {
     video.src = src;
     video.load();
   }
 });
 
-// Gallery creation
 const gallery = document.querySelector("[data-gallery='character']");
 const characterImages = portfolioImages.slice(imageSlotOrder.length);
 
-characterImages.forEach((src, index) => {
-  const figure = document.createElement("figure");
-  figure.className = "gallery-card";
+if (gallery) {
+  characterImages.forEach((src, index) => {
+    const figure = document.createElement("figure");
+    figure.className = "gallery-card reveal-on-scroll";
+    figure.style.setProperty("--gallery-ratio", galleryRatios[index % galleryRatios.length]);
+    figure.tabIndex = 0;
 
-  const image = document.createElement("img");
-  image.src = src;
-  image.alt = characterCaptions[index] || `Aanvi Karmakar character still ${index + 1}`;
+    const image = document.createElement("img");
+    image.src = src;
+    image.alt = characterCaptions[index] || `Aanvi Karmakar character still ${index + 1}`;
+    image.loading = "lazy";
 
-  const caption = document.createElement("figcaption");
-  caption.innerHTML = `<span>${characterCaptions[index] || "Portfolio still"}</span><em>${String(index + 1).padStart(2, "0")}</em>`;
+    const caption = document.createElement("figcaption");
+    caption.innerHTML = `<span>${characterCaptions[index] || "Portfolio still"}</span><em>${String(index + 1).padStart(2, "0")}</em>`;
 
-  figure.append(image, caption);
-  gallery.append(figure);
-});
+    figure.append(image, caption);
+    gallery.append(figure);
+  });
+}
 
-// ========== SCROLL ANIMATIONS ==========
+const header = document.querySelector(".site-header");
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.querySelector(".nav-links");
 
-const observerOptions = {
-  threshold: 0.15,
-  rootMargin: '0px 0px -100px 0px'
+const closeMenu = () => {
+  if (!navToggle || !navLinks) return;
+  navToggle.classList.remove("is-open");
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", "Open menu");
+  navLinks.classList.remove("is-open");
+  document.body.classList.remove("menu-open");
 };
 
-// Observer for fade-in elements
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, index) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, index * 100);
-      fadeObserver.unobserve(entry.target);
+navToggle?.addEventListener("click", () => {
+  const isOpen = navToggle.classList.toggle("is-open");
+  navToggle.setAttribute("aria-expanded", String(isOpen));
+  navToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+  navLinks?.classList.toggle("is-open", isOpen);
+  document.body.classList.toggle("menu-open", isOpen);
+});
+
+navLinks?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", closeMenu);
+});
+
+document.querySelectorAll("a[href^='#']").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const hash = link.getAttribute("href");
+
+    if (hash && scrollToHash(hash)) {
+      event.preventDefault();
+      closeMenu();
     }
   });
-}, observerOptions);
-
-// Observe gallery cards
-document.querySelectorAll('.gallery-card').forEach(card => {
-  fadeObserver.observe(card);
 });
 
-// Observe catalog cards
-document.querySelectorAll('.catalog-card').forEach(card => {
-  fadeObserver.observe(card);
+window.addEventListener("load", () => {
+  if (window.location.hash) {
+    window.setTimeout(() => scrollToHash(window.location.hash, false), 80);
+  }
 });
 
-// Observe designer rows
-document.querySelectorAll('.designer-row').forEach(row => {
-  fadeObserver.observe(row);
+const updateHeader = () => {
+  header?.classList.toggle("is-scrolled", window.scrollY > 24);
+};
+
+updateHeader();
+window.addEventListener("scroll", updateHeader, { passive: true });
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add("is-visible");
+    revealObserver.unobserve(entry.target);
+  });
+}, {
+  threshold: 0.12,
+  rootMargin: "0px 0px -70px 0px"
 });
 
-// ========== HERO PARALLAX ==========
-const heroImage = document.querySelector('.hero-image');
-const heroSection = document.querySelector('.hero');
+document.querySelectorAll(".reveal-on-scroll").forEach((element) => {
+  revealObserver.observe(element);
+});
 
-if (heroImage && heroSection) {
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-    const scrollProgress = scrolled / heroBottom;
+const navItems = [...document.querySelectorAll(".nav-links a[href^='#']")];
+const sections = navItems
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
 
-    if (scrollProgress < 1) {
-      const parallaxAmount = scrolled * 0.4;
-      heroImage.style.transform = `translateY(${parallaxAmount}px)`;
-    }
+const activeObserver = new IntersectionObserver((entries) => {
+  const visible = entries
+    .filter((entry) => entry.isIntersecting)
+    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+  if (!visible) return;
+
+  navItems.forEach((link) => {
+    link.classList.toggle("is-active", link.getAttribute("href") === `#${visible.target.id}`);
+  });
+}, {
+  threshold: [0.2, 0.45, 0.65],
+  rootMargin: "-30% 0px -55% 0px"
+});
+
+sections.forEach((section) => activeObserver.observe(section));
+
+const heroImage = document.querySelector(".hero-image");
+const heroSection = document.querySelector(".hero");
+
+if (heroImage && heroSection && !prefersReducedMotion) {
+  window.addEventListener("scroll", () => {
+    const heroHeight = heroSection.offsetHeight || 1;
+    const progress = Math.min(window.scrollY / heroHeight, 1);
+    heroImage.style.transform = `translateY(${progress * 42}px) scale(1.02)`;
   }, { passive: true });
 }
 
-// ========== INTRO CARD REVEAL ==========
-const introCard = document.querySelector('.intro-card');
-const introImage = document.querySelector('.intro-image');
-
-if (introCard) {
-  const introObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        introCard.classList.add('animate-slide-left');
-        if (introImage) {
-          introImage.classList.add('animate-slide-right');
-        }
-        introObserver.unobserve(entry.target);
-      }
+if (!prefersReducedMotion) {
+  document.querySelectorAll(".magnetic-image").forEach((image) => {
+    image.addEventListener("mousemove", (event) => {
+      const rect = image.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 10;
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 10;
+      image.style.transform = `scale(1.035) translate(${x}px, ${y}px)`;
     });
-  }, observerOptions);
 
-  introObserver.observe(introCard);
+    image.addEventListener("mouseleave", () => {
+      image.style.transform = "";
+    });
+  });
 }
 
-// ========== ABOUT SECTION REVEALS ==========
-const aboutTiles = document.querySelectorAll('.about-tile');
-const aboutCenter = document.querySelector('.about-center');
+const lightbox = document.querySelector(".lightbox");
+const lightboxImage = lightbox?.querySelector("img");
+const lightboxCaption = lightbox?.querySelector("p");
+const lightboxClose = lightbox?.querySelector(".lightbox-close");
+const transparentPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
-if (aboutTiles.length > 0 || aboutCenter) {
-  const aboutObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('animate-fade-up');
-        }, index * 150);
-        aboutObserver.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
+const openLightbox = (image) => {
+  if (!lightbox || !lightboxImage || !lightboxCaption) return;
+  lightboxImage.src = image.currentSrc || image.src;
+  lightboxImage.alt = image.alt;
+  lightboxCaption.textContent = image.alt;
+  lightbox.hidden = false;
+  document.body.classList.add("lightbox-open");
+  lightboxClose?.focus();
+};
 
-  aboutTiles.forEach(tile => aboutObserver.observe(tile));
-  if (aboutCenter) aboutObserver.observe(aboutCenter);
-}
+const closeLightbox = () => {
+  if (!lightbox || !lightboxImage || !lightboxCaption) return;
+  lightbox.hidden = true;
+  lightboxImage.src = transparentPixel;
+  lightboxImage.alt = "";
+  lightboxCaption.textContent = "";
+  document.body.classList.remove("lightbox-open");
+};
 
-// ========== REEL SECTION REVEAL ==========
-const reelFrame = document.querySelector('.reel-frame');
-
-if (reelFrame) {
-  const reelObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-fade-scale');
-        reelObserver.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  reelObserver.observe(reelFrame);
-}
-
-// ========== SECTION HEADING REVEALS ==========
-const sectionHeadings = document.querySelectorAll('.section-heading, .designer-intro, .character-title, .identity');
-
-sectionHeadings.forEach(heading => {
-  const headingObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-fade-up');
-        headingObserver.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  headingObserver.observe(heading);
+document.querySelectorAll("[data-lightbox-trigger]").forEach((trigger) => {
+  trigger.addEventListener("click", () => {
+    const image = trigger.querySelector("img");
+    if (image) openLightbox(image);
+  });
 });
 
-// ========== MEASUREMENTS SECTION ANIMATIONS ==========
-const measurementsParts = document.querySelectorAll(
-  '.measurements-header, .measurements-stats, .measurements-detail, .measurements-appearance'
-);
+document.querySelectorAll(".gallery-card").forEach((card) => {
+  const image = card.querySelector("img");
 
-measurementsParts.forEach((el) => {
-  const mObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        mObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-  mObserver.observe(el);
-});
+  card.addEventListener("click", () => {
+    if (image) openLightbox(image);
+  });
 
-// ========== IMAGE HOVER SCALE EFFECT ==========
-document.querySelectorAll('.js-sequence-image').forEach(img => {
-  img.addEventListener('mouseenter', function() {
-    if (!this.classList.contains('is-empty')) {
-      this.style.transform = 'scale(1.01)';
+  card.addEventListener("keydown", (event) => {
+    if ((event.key === "Enter" || event.key === " ") && image) {
+      event.preventDefault();
+      openLightbox(image);
     }
   });
+});
 
-  img.addEventListener('mouseleave', function() {
-    this.style.transform = 'scale(1)';
-  });
+lightboxClose?.addEventListener("click", closeLightbox);
+lightbox?.addEventListener("click", (event) => {
+  if (event.target === lightbox) closeLightbox();
+});
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeLightbox();
+    closeMenu();
+  }
 });

@@ -8,84 +8,111 @@
       name="description"
       content="Fashion and editorial portfolio for model, actress, and performer Aanvi Karmakar."
     >
-    <!-- Open Graph Meta Tags (Instagram, WhatsApp, Facebook) -->
-<meta property="og:title" content="Aanvi Karmakar - Model & Actor Portfolio">
-<meta property="og:description" content="Professional model and actor available for bookings. Browse verified portfolio, testimonials, and recent projects.">
-<meta property="og:image" content="https://assets.aanvikarmakar.com/IMG_1345.jpeg">
-<meta property="og:url" content="https://aanvikarmakar.com">
-<meta property="og:type" content="website">
-
-<!-- Instagram Specific -->
-<meta property="instagram:title" content="Aanvi Karmakar - Model & Actor Portfolio">
-<meta property="instagram:description" content="Professional model and actor available for bookings. Browse verified portfolio, testimonials, and recent projects.">
-<meta property="instagram:image" content="https://assets.aanvikarmakar.com/IMG_1345.jpeg">
-
-<!-- WhatsApp Specific -->
-<meta property="whatsapp:image" content="https://assets.aanvikarmakar.com/IMG_1345.jpeg">
-
-<!-- Twitter/X Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Aanvi Karmakar - Model & Actor Portfolio">
-<meta name="twitter:description" content="Professional model and actor available for bookings. Browse verified portfolio, testimonials, and recent projects.">
-<meta name="twitter:image" content="https://assets.aanvikarmakar.com/IMG_1345.jpeg">
+    <meta property="og:title" content="Aanvi Karmakar - Model & Actor Portfolio">
+    <meta property="og:description" content="Professional model and actor available for bookings. Browse verified portfolio, testimonials, and recent projects.">
+    <meta property="og:image" content="https://assets.aanvikarmakar.com/IMG_1345.jpeg">
+    <meta property="og:url" content="https://aanvikarmakar.com">
+    <meta property="og:type" content="website">
+    <meta property="instagram:title" content="Aanvi Karmakar - Model & Actor Portfolio">
+    <meta property="instagram:description" content="Professional model and actor available for bookings. Browse verified portfolio, testimonials, and recent projects.">
+    <meta property="instagram:image" content="https://assets.aanvikarmakar.com/IMG_1345.jpeg">
+    <meta property="whatsapp:image" content="https://assets.aanvikarmakar.com/IMG_1345.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aanvi Karmakar - Model & Actor Portfolio">
+    <meta name="twitter:description" content="Professional model and actor available for bookings. Browse verified portfolio, testimonials, and recent projects.">
+    <meta name="twitter:image" content="https://assets.aanvikarmakar.com/IMG_1345.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="./styles.css?v=20260513-22">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230d0c0b'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' fill='%23fffaf3' font-size='28' font-family='serif'%3EAK%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="./styles.css?v=20260619-01">
   </head>
   <body>
     <header class="site-header" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Aanvi Karmakar home">Aanvi Karmakar</a>
-      <nav class="nav-links" aria-label="Main">
+      <a class="brand" href="#top" aria-label="Aanvi Karmakar home">
+        <span>AK</span>
+        <strong>Aanvi Karmakar</strong>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-links" id="primary-nav" aria-label="Main">
+        <a href="#top">Home</a>
+        <a href="#work">Work</a>
+        <a href="#reel">Reel</a>
         <a href="#measurements">Measurements</a>
         <a href="#contact">Contact</a>
+        <a class="nav-cta" href="mailto:anvikarmakar@pm.me?subject=Booking%20Inquiry%20for%20Aanvi%20Karmakar">Bookings</a>
       </nav>
     </header>
 
-    <main id="top">
-      <section class="hero section-dark" aria-labelledby="hero-title">
+    <main>
+      <section class="hero section-dark" id="top" aria-labelledby="hero-title" data-section="hero">
         <img class="hero-image js-sequence-image" data-slot="hero" alt="Aanvi Karmakar editorial portrait">
-        <div class="hero-copy">
-          <p>Model<br>Actress<br>Performer</p>
-          <a class="hero-button" href="#work">View My Work</a>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="hero-roles">Model <span></span> Actress <span></span> Performer</p>
+          <h1 id="hero-title">
+            <span class="reveal-line"><span>Aanvi</span></span>
+            <span class="reveal-line"><span>Karmakar</span></span>
+          </h1>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button button-primary" href="#work">View Work</a>
+            <a class="button button-secondary" href="#contact">Bookings</a>
+          </div>
         </div>
-        <h1 id="hero-title"><span class="reveal-line"><span>Aanvi</span></span><span class="reveal-line"><span>Karmakar</span></span></h1>
+        <div class="hero-index" aria-hidden="true">
+          <span>01</span>
+          <i></i>
+          <span>09</span>
+        </div>
+        <a class="scroll-cue" href="#intro" aria-label="Scroll to introduction">
+          <span>Scroll</span>
+          <i></i>
+        </a>
       </section>
 
-      <section class="intro-panel" aria-label="Fashion editorial introduction">
-        <img class="intro-image js-sequence-image" data-slot="intro" alt="Aanvi Karmakar in an editorial fashion pose">
-        <div class="intro-card">
+      <section class="intro-panel" id="intro" aria-label="Fashion editorial introduction">
+        <div class="intro-statement reveal-on-scroll">
           <h2>Fashion and editorial model creating expressive, contemporary visual stories.</h2>
-          <p>Based between Calcutta and Bombay.</p>
+          <p>Based between Calcutta and Bombay. Available for campaigns, editorials, designer shoots, and screen-led work.</p>
+        </div>
+        <div class="intro-image-wrap reveal-on-scroll">
+          <img class="intro-image js-sequence-image magnetic-image" data-slot="intro" alt="Aanvi Karmakar in an editorial fashion pose">
         </div>
       </section>
 
-      <section class="about-strip" id="resume" aria-labelledby="about-heading">
-        <article class="about-tile">
+      <section class="about-strip section-ink" id="about" aria-labelledby="about-heading">
+        <div class="about-media reveal-on-scroll">
+          <img class="js-sequence-image magnetic-image" data-slot="aboutPortrait" alt="Aanvi Karmakar portrait">
+        </div>
+        <div class="about-copy reveal-on-scroll">
+          <p class="section-label">About Aanvi</p>
           <h2 id="about-heading">Breathing Life into Character</h2>
-        </article>
-        <article class="about-center">
-          <p class="script-label">About</p>
-          <img class="js-sequence-image" data-slot="aboutPortrait" alt="Aanvi Karmakar portrait">
-        </article>
-        <article class="about-tile about-bio">
           <p>
             Aanvi Karmakar is a fashion and editorial model based between Calcutta and Bombay,
             specializing in campaigns, editorials, and visual storytelling through timeless and
             expressive imagery.
           </p>
-        </article>
+          <div class="about-notes" aria-label="Profile highlights">
+            <span>Fashion</span>
+            <span>Editorial</span>
+            <span>Screen</span>
+          </div>
+        </div>
       </section>
 
-      <section class="reel" aria-labelledby="reel-heading">
-        <div class="section-heading">
-          <p class="script-label">The Reel</p>
+      <section class="reel section-ink" id="reel" aria-labelledby="reel-heading">
+        <div class="section-heading reveal-on-scroll">
+          <p class="section-label">The Reel</p>
           <h2 id="reel-heading">A Glimpse into<br>My On-Screen Work</h2>
+          <p>A cinematic showreel for movement, mood, expression, and camera presence.</p>
         </div>
-        <div class="reel-frame">
+        <div class="reel-frame reveal-on-scroll">
           <span class="corner corner-top-left"></span>
           <span class="corner corner-top-right"></span>
           <video
@@ -104,113 +131,156 @@
         </div>
       </section>
 
-      <section class="devdas section-pink" id="work" aria-labelledby="devdas-heading">
-        <h2 id="devdas-heading">Devdas Shoot</h2>
-        <div class="catalog-grid">
-          <article class="catalog-card">
-            <img class="js-sequence-image" data-slot="devdas1" alt="Devdas catalog 1">
-            <div class="catalog-title">
-              <h3>Devdas Catalog 1</h3>
-              <span>01</span>
-            </div>
-            <p>They called me Paro, but no one asked what it takes to love like Paro.</p>
-            <p class="credits">Organized by - AKPH - HTPM<br>Model - @aanvi.me<br>Photography - @capix_photography_<br>Mua - @aronit_makeover_mua<br>Hair - @sampas903<br>Designer - @akash_kumar_kirtaniya<br>Jewellery - @newgourjewellers<br>Location - @muhurat.studio</p>
-          </article>
-          <article class="catalog-card">
-            <img class="js-sequence-image" data-slot="devdas2" alt="Devdas catalog 2">
-            <div class="catalog-title">
-              <h3>Devdas Catalog 2</h3>
-              <span>02</span>
-            </div>
-            <p>Kuch zakhmon ke karz lafzon se ada nahi hote.</p>
-            <p class="credits">Organized by - AKPH - HTPM<br>Model - @aanvi.me<br>Photography - @capix_photography_<br>Mua - @aronit_makeover_mua<br>Hair - @sampas903<br>Designer - @akash_kumar_kirtaniya<br>Jewellery - @newgourjewellers<br>Location - @muhurat.studio</p>
-          </article>
-          <article class="catalog-card">
-            <img class="js-sequence-image" data-slot="devdas3" alt="Devdas catalog 3">
-            <div class="catalog-title">
-              <h3>Devdas Catalog 3</h3>
-              <span>03</span>
-            </div>
-            <p>Some souls are meant to burn, not bloom – that's the poetry of Devdas.</p>
-            <p class="credits">Organized by - AKPH - HTPM<br>Model - @aanvi.me<br>Photography - @capix_photography_<br>Mua - @aronit_makeover_mua<br>Hair - @sampas903<br>Designer - @akash_kumar_kirtaniya<br>Jewellery - @newgourjewellers<br>Location - @muhurat.studio</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="designer section-pink" aria-labelledby="designer-heading">
-        <div class="designer-intro">
-          <h2 id="designer-heading">Designer Shoots</h2>
-          <p>Designer shoots that blend fashion, movement, and visual storytelling.<br>A curated selection of editorial and campaign collaborations.</p>
+      <section class="work-section" id="work" aria-labelledby="work-heading">
+        <div class="work-header reveal-on-scroll">
+          <p class="section-label">Selected Work</p>
+          <h2 id="work-heading">Editorial stories with shape, stillness, and fire.</h2>
         </div>
 
-        <article class="designer-row">
-          <div class="designer-media wide">
-            <img class="js-sequence-image" data-slot="designer1" alt="Ashoka catalog 1">
+        <section class="project-block devdas" aria-labelledby="devdas-heading">
+          <div class="project-copy reveal-on-scroll">
+            <p class="section-label">Campaign 01</p>
+            <h2 id="devdas-heading">Devdas Shoot</h2>
+            <p>A timeless story reimagined through classic aesthetics, ritual details, and rich emotions.</p>
           </div>
-          <div class="designer-text">
-            <h3>Ashoka Catalog 1</h3>
-            <p>She wasn't just beside the king... she was the reason kingdoms bowed.</p>
-            <p class="credits">Organized by - AKPH<br>Model - @aanvi.me<br>Mua - @ronit_makeover_mua<br>Jewellery - @newgourjewellers<br>Hair - @sambhava_21 @sampas903<br>Designer - @akash_kumar_kirtaniya<br>Photography - @ithe_unknownsort<br>Location - @lostpassionstudio</p>
+          <div class="catalog-grid">
+            <article class="catalog-card reveal-on-scroll">
+              <button class="image-button" type="button" data-lightbox-trigger="devdas1">
+                <img class="js-sequence-image magnetic-image" data-slot="devdas1" alt="Devdas catalog 1">
+              </button>
+              <div class="catalog-title">
+                <h3>Devdas Catalog 1</h3>
+                <span>01</span>
+              </div>
+              <p>They called me Paro, but no one asked what it takes to love like Paro.</p>
+              <p class="credits">Organized by - AKPH - HTPM<br>Model - @aanvi.me<br>Photography - @capix_photography_<br>Mua - @aronit_makeover_mua<br>Hair - @sampas903<br>Designer - @akash_kumar_kirtaniya<br>Jewellery - @newgourjewellers<br>Location - @muhurat.studio</p>
+            </article>
+            <article class="catalog-card reveal-on-scroll">
+              <button class="image-button" type="button" data-lightbox-trigger="devdas2">
+                <img class="js-sequence-image magnetic-image" data-slot="devdas2" alt="Devdas catalog 2">
+              </button>
+              <div class="catalog-title">
+                <h3>Devdas Catalog 2</h3>
+                <span>02</span>
+              </div>
+              <p>Kuch zakhmon ke karz lafzon se ada nahi hote.</p>
+              <p class="credits">Organized by - AKPH - HTPM<br>Model - @aanvi.me<br>Photography - @capix_photography_<br>Mua - @aronit_makeover_mua<br>Hair - @sampas903<br>Designer - @akash_kumar_kirtaniya<br>Jewellery - @newgourjewellers<br>Location - @muhurat.studio</p>
+            </article>
+            <article class="catalog-card reveal-on-scroll">
+              <button class="image-button" type="button" data-lightbox-trigger="devdas3">
+                <img class="js-sequence-image magnetic-image" data-slot="devdas3" alt="Devdas catalog 3">
+              </button>
+              <div class="catalog-title">
+                <h3>Devdas Catalog 3</h3>
+                <span>03</span>
+              </div>
+              <p>Some souls are meant to burn, not bloom - that's the poetry of Devdas.</p>
+              <p class="credits">Organized by - AKPH - HTPM<br>Model - @aanvi.me<br>Photography - @capix_photography_<br>Mua - @aronit_makeover_mua<br>Hair - @sampas903<br>Designer - @akash_kumar_kirtaniya<br>Jewellery - @newgourjewellers<br>Location - @muhurat.studio</p>
+            </article>
           </div>
-        </article>
+        </section>
 
-        <article class="designer-row">
-          <div class="designer-media trio">
-            <img class="js-sequence-image" data-slot="designer2" alt="Ashoka catalog 2 look 1">
-            <img class="js-sequence-image" data-slot="designer3" alt="Ashoka catalog 2 look 2">
-            <img class="js-sequence-image" data-slot="designer4" alt="Ashoka catalog 2 look 3">
+        <section class="project-block designer" aria-labelledby="designer-heading">
+          <div class="project-copy reveal-on-scroll">
+            <p class="section-label">Campaign 02</p>
+            <h2 id="designer-heading">Designer Shoots</h2>
+            <p>Designer shoots that blend fashion, movement, and visual storytelling across editorial and campaign collaborations.</p>
           </div>
-          <div class="designer-text">
-            <h3>Ashoka Catalog 2</h3>
-            <p>Not every queen needs a crown. Some rule with fire in their eyes and peace in their soul.</p>
-            <p class="credits">Organized by - AKPH<br>Model - @aanvi.me<br>Mua - @ronit_makeover_mua<br>Hair - @sampas903 @sambhava_21<br>Designer - @akash_kumar_kirtaniya<br>Jewellery - @akash_kumar_kirtaniya @newgourjewellers<br>Location - @lostpassionstudio</p>
-          </div>
-        </article>
 
-        <article class="designer-row">
-          <div class="designer-media wide">
-            <img class="js-sequence-image" data-slot="designer5" alt="Sindoor daan look 1">
-          </div>
-          <div class="designer-text">
-            <h3>Sindoor Daan Look - 1</h3>
-            <p>Sindoor ki laali to kahani puri karti hai, par pyaar to uski aankhon mein pehle se likha tha.</p>
-            <p class="credits">organised collaborations by - AKPH & HTPM<br>muse - aanvi.me<br>mua - @ronit_makeover_mua<br>hair - sampas903<br>photography - ariaisontattoitk_photography<br>outfit by - @akash_kumar_kirtaniya<br>jewellery by - @NewgouriJewellers</p>
-          </div>
-        </article>
+          <article class="designer-row reveal-on-scroll">
+            <div class="designer-media wide">
+              <button class="image-button" type="button" data-lightbox-trigger="designer1">
+                <img class="js-sequence-image magnetic-image" data-slot="designer1" alt="Ashoka catalog 1">
+              </button>
+            </div>
+            <div class="designer-text">
+              <h3>Ashoka Catalog 1</h3>
+              <p>She wasn't just beside the king... she was the reason kingdoms bowed.</p>
+              <details class="credits-panel">
+                <summary>Credits</summary>
+                <p class="credits">Organized by - AKPH<br>Model - @aanvi.me<br>Mua - @ronit_makeover_mua<br>Jewellery - @newgourjewellers<br>Hair - @sambhava_21 @sampas903<br>Designer - @akash_kumar_kirtaniya<br>Photography - @ithe_unknownsort<br>Location - @lostpassionstudio</p>
+              </details>
+            </div>
+          </article>
 
-        <article class="designer-row">
-          <div class="designer-media wide">
-            <img class="js-sequence-image" data-slot="designer6" alt="Sindoor daan look 2">
-          </div>
-          <div class="designer-text">
-            <h3>Sindoor Daan Look - 2</h3>
-            <p>Fingers that once drew dreams now write rituals with red.</p>
-            <p class="credits">organised collaborations by - AKPH & HTPM<br>muse - aanvi.me<br>mua - @ronit_makeover_mua<br>hair - sampas903<br>photography - ariaisontattoitk_photography<br>outfit by - @akash_kumar_kirtaniya<br>jewellery by - @NewgouriJewellers</p>
-          </div>
-        </article>
+          <article class="designer-row reveal-on-scroll">
+            <div class="designer-media trio">
+              <button class="image-button" type="button" data-lightbox-trigger="designer2">
+                <img class="js-sequence-image magnetic-image" data-slot="designer2" alt="Ashoka catalog 2 look 1">
+              </button>
+              <button class="image-button" type="button" data-lightbox-trigger="designer3">
+                <img class="js-sequence-image magnetic-image" data-slot="designer3" alt="Ashoka catalog 2 look 2">
+              </button>
+              <button class="image-button" type="button" data-lightbox-trigger="designer4">
+                <img class="js-sequence-image magnetic-image" data-slot="designer4" alt="Ashoka catalog 2 look 3">
+              </button>
+            </div>
+            <div class="designer-text">
+              <h3>Ashoka Catalog 2</h3>
+              <p>Not every queen needs a crown. Some rule with fire in their eyes and peace in their soul.</p>
+              <details class="credits-panel">
+                <summary>Credits</summary>
+                <p class="credits">Organized by - AKPH<br>Model - @aanvi.me<br>Mua - @ronit_makeover_mua<br>Hair - @sampas903 @sambhava_21<br>Designer - @akash_kumar_kirtaniya<br>Jewellery - @akash_kumar_kirtaniya @newgourjewellers<br>Location - @lostpassionstudio</p>
+              </details>
+            </div>
+          </article>
+
+          <article class="designer-row reveal-on-scroll">
+            <div class="designer-media wide">
+              <button class="image-button" type="button" data-lightbox-trigger="designer5">
+                <img class="js-sequence-image magnetic-image" data-slot="designer5" alt="Sindoor daan look 1">
+              </button>
+            </div>
+            <div class="designer-text">
+              <h3>Sindoor Daan Look - 1</h3>
+              <p>Sindoor ki laali to kahani puri karti hai, par pyaar to uski aankhon mein pehle se likha tha.</p>
+              <details class="credits-panel">
+                <summary>Credits</summary>
+                <p class="credits">organised collaborations by - AKPH &amp; HTPM<br>muse - aanvi.me<br>mua - @ronit_makeover_mua<br>hair - sampas903<br>photography - ariaisontattoitk_photography<br>outfit by - @akash_kumar_kirtaniya<br>jewellery by - @NewgouriJewellers</p>
+              </details>
+            </div>
+          </article>
+
+          <article class="designer-row reveal-on-scroll">
+            <div class="designer-media wide">
+              <button class="image-button" type="button" data-lightbox-trigger="designer6">
+                <img class="js-sequence-image magnetic-image" data-slot="designer6" alt="Sindoor daan look 2">
+              </button>
+            </div>
+            <div class="designer-text">
+              <h3>Sindoor Daan Look - 2</h3>
+              <p>Fingers that once drew dreams now write rituals with red.</p>
+              <details class="credits-panel">
+                <summary>Credits</summary>
+                <p class="credits">organised collaborations by - AKPH &amp; HTPM<br>muse - aanvi.me<br>mua - @ronit_makeover_mua<br>hair - sampas903<br>photography - ariaisontattoitk_photography<br>outfit by - @akash_kumar_kirtaniya<br>jewellery by - @NewgouriJewellers</p>
+              </details>
+            </div>
+          </article>
+        </section>
       </section>
 
       <section class="character" aria-labelledby="character-heading">
-        <div class="character-title">
+        <div class="character-title reveal-on-scroll">
+          <p class="section-label">Gallery</p>
           <h2 id="character-heading">In Character</h2>
-          <p>A Collection of Headshots<br>and Production Stills</p>
+          <p>A collection of headshots, production stills, expressive studies, and styling stories.</p>
         </div>
         <div class="masonry-gallery" data-gallery="character"></div>
       </section>
 
       <section class="measurements" id="measurements" aria-labelledby="measurements-heading">
-        <div class="measurements-header">
+        <div class="measurements-header reveal-on-scroll">
           <div>
-            <p class="script-label">For Bookings &amp; Castings</p>
+            <p class="section-label">For Bookings &amp; Castings</p>
             <h2 id="measurements-heading">Measurements</h2>
           </div>
-          <p class="measurements-header-note">All measurements taken professionally.<br>Available for casting &amp; styling inquiries.</p>
+          <p class="measurements-header-note">All measurements taken professionally. Available for casting and styling inquiries.</p>
         </div>
 
-        <div class="measurements-stats" aria-label="Key measurements">
+        <div class="measurements-stats reveal-on-scroll" aria-label="Key measurements">
           <div class="mstat">
             <span class="mstat-value">172<small>cm</small></span>
-            <span class="mstat-sub">5&#39;8&#34;</span>
+            <span class="mstat-sub">5'8"</span>
             <span class="mstat-label">Height</span>
           </div>
           <div class="mstat">
@@ -240,7 +310,7 @@
           </div>
         </div>
 
-        <div class="measurements-detail" aria-label="Full measurement breakdown">
+        <div class="measurements-detail reveal-on-scroll" aria-label="Full measurement breakdown">
           <div class="measurements-group">
             <h3>Upper Body</h3>
             <dl>
@@ -291,15 +361,15 @@
             <h3>Lengths</h3>
             <dl>
               <div><dt>Trouser</dt><dd>99.5 cm <em>/ 39"</em></dd></div>
-              <div><dt>&#189; Trouser</dt><dd>43.5 cm <em>/ 19"</em></dd></div>
-              <div><dt>Neck &#8211; Waist</dt><dd>47.5 cm <em>/ 18.5"</em></dd></div>
-              <div><dt>Neck &#8211; Heels</dt><dd>150.5 cm <em>/ 59"</em></dd></div>
+              <div><dt>1/2 Trouser</dt><dd>43.5 cm <em>/ 19"</em></dd></div>
+              <div><dt>Neck - Waist</dt><dd>47.5 cm <em>/ 18.5"</em></dd></div>
+              <div><dt>Neck - Heels</dt><dd>150.5 cm <em>/ 59"</em></dd></div>
               <div><dt>Dart Point</dt><dd>26.75 cm <em>/ 10.25"</em></dd></div>
             </dl>
           </div>
         </div>
 
-        <div class="measurements-appearance" aria-label="Appearance details">
+        <div class="measurements-appearance reveal-on-scroll" aria-label="Appearance details">
           <div>
             <span>Hair Color</span>
             <span>Black Brown</span>
@@ -320,29 +390,59 @@
       </section>
 
       <section class="identity" aria-labelledby="identity-heading">
-        <h2 id="identity-heading">Who is Aanvi Karmakar?</h2>
-        <div class="identity-list">
-          <article>
-            <span>(01)</span>
-            <p>"Fashion and editorial model based between Calcutta and Bombay, working across campaigns, designer shoots, and creative collaborations."</p>
-          </article>
-          <article>
-            <span>(02)</span>
-            <p>"Known for a versatile presence that blends elegance, confidence, and contemporary fashion storytelling."</p>
-          </article>
-          <article>
-            <span>(03)</span>
-            <p>"Fluent in Bengali, Hindi, and English, bringing adaptability and expression to every project and frame."</p>
-          </article>
+        <div class="identity-image reveal-on-scroll">
+          <img class="js-sequence-image magnetic-image" data-slot="identityPortrait" alt="Aanvi Karmakar black and white editorial portrait">
+        </div>
+        <div class="identity-copy reveal-on-scroll">
+          <p class="section-label">Presence</p>
+          <h2 id="identity-heading">Identity. Intention. Impact.</h2>
+          <div class="identity-list">
+            <article>
+              <span>(01)</span>
+              <p>Fashion and editorial model based between Calcutta and Bombay, working across campaigns, designer shoots, and creative collaborations.</p>
+            </article>
+            <article>
+              <span>(02)</span>
+              <p>Known for a versatile presence that blends elegance, confidence, and contemporary fashion storytelling.</p>
+            </article>
+            <article>
+              <span>(03)</span>
+              <p>Fluent in Bengali, Hindi, and English, bringing adaptability and expression to every project and frame.</p>
+            </article>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer" id="contact">
-      <p class="script-label">Get in Touch</p>
-      <h2>Connect with Aanvi</h2>
-      <p class="footer-tagline">For professional inquiries, bookings, and audition opportunities.</p>
-      <div class="footer-contact-row">
+      <div class="footer-kinetic" aria-hidden="true">
+        <span>Bookings / Castings / Campaigns / Editorial / Screen Work / </span>
+        <span>Bookings / Castings / Campaigns / Editorial / Screen Work / </span>
+      </div>
+      <div class="footer-heading reveal-on-scroll">
+        <p class="section-label">Get in Touch</p>
+        <h2>Connect with Aanvi</h2>
+        <p class="footer-tagline">For professional inquiries, bookings, collaborations, and audition opportunities.</p>
+        <div class="footer-actions" aria-label="Primary contact actions">
+          <a class="button button-primary" href="mailto:anvikarmakar@pm.me?subject=Booking%20Inquiry%20for%20Aanvi%20Karmakar">Book by Email</a>
+          <a class="button button-secondary" href="tel:+918017378871">Call Directly</a>
+        </div>
+      </div>
+      <section class="booking-showpiece reveal-on-scroll" aria-label="Booking details">
+        <div class="booking-signal" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <p class="booking-label">Booking Desk</p>
+        <a class="booking-email" href="mailto:anvikarmakar@pm.me?subject=Booking%20Inquiry%20for%20Aanvi%20Karmakar">anvikarmakar@pm.me</a>
+        <div class="booking-meta">
+          <a href="tel:+918017378871">+91 8017378871</a>
+          <span>Calcutta / Bombay</span>
+          <span>Editorial / Campaign / Screen</span>
+        </div>
+      </section>
+      <div class="footer-contact-row reveal-on-scroll">
         <a class="footer-contact-pill" href="mailto:anvikarmakar@pm.me">
           <span class="footer-contact-label">Email</span>
           <span>anvikarmakar@pm.me</span>
@@ -372,6 +472,12 @@
       <p class="copyright">© 2026 Aanvi Karmakar. All rights reserved.</p>
     </footer>
 
-    <script src="./script.js"></script>
+    <div class="lightbox" hidden aria-modal="true" role="dialog" aria-label="Portfolio image preview">
+      <button class="lightbox-close" type="button" aria-label="Close image preview">Close</button>
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="">
+      <p></p>
+    </div>
+
+    <script src="./script.js?v=20260619-01"></script>
   </body>
 </html>
