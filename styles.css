@@ -2077,44 +2077,150 @@ h3 {
   }
 
   .measurements {
-    padding: 54px 14px;
+    padding: 54px 14px 62px;
+    scroll-margin-top: 92px;
   }
 
   .measurements-header {
     display: grid;
-    gap: 20px;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .measurements-header-note {
+    max-width: 34rem;
+    font-size: 13px;
+    line-height: 1.55;
   }
 
   .measurements-stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    overflow: hidden;
+    background: rgba(255, 250, 243, 0.16);
+    border-color: rgba(255, 250, 243, 0.16);
+    border-radius: 8px;
   }
 
   .mstat,
-  .mstat:nth-child(3n) {
-    border-right: 1px solid rgba(255, 250, 243, 0.18);
+  .mstat:nth-child(3n),
+  .mstat:nth-child(n + 4) {
+    min-height: 98px;
+    padding: 13px;
+    background:
+      linear-gradient(145deg, rgba(255, 250, 243, 0.095), rgba(255, 250, 243, 0.025)),
+      rgba(13, 12, 11, 0.18);
+    border: 0;
   }
 
-  .mstat:nth-child(2n) {
-    border-right: 0;
+  .mstat-value {
+    font-size: clamp(28px, 9.8vw, 42px);
   }
 
-  .mstat:nth-child(n + 3) {
-    border-top: 1px solid rgba(255, 250, 243, 0.18);
+  .mstat-value small {
+    margin-left: 2px;
+    font-size: 9px;
+  }
+
+  .mstat-sub {
+    margin-top: 10px;
+  }
+
+  .mstat-sub,
+  .mstat-label {
+    font-size: 9px;
+    letter-spacing: 0.09em;
   }
 
   .measurements-detail,
-  .measurements-appearance,
   .footer-contact-row {
     grid-template-columns: 1fr;
   }
 
+  .measurements-detail {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    margin: 14px -14px 0;
+    padding: 0 14px 10px;
+    background: transparent;
+    border: 0;
+    scroll-padding-inline: 14px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .measurements-detail::-webkit-scrollbar {
+    height: 0;
+  }
+
+  .measurements-group {
+    flex: 0 0 min(86vw, 420px);
+    padding: 18px;
+    background:
+      linear-gradient(150deg, rgba(255, 250, 243, 0.11), rgba(255, 250, 243, 0.035)),
+      rgba(13, 12, 11, 0.22);
+    border: 1px solid rgba(255, 250, 243, 0.16);
+    border-radius: 8px;
+    scroll-snap-align: start;
+  }
+
+  .measurements-group h3 {
+    margin-bottom: 14px;
+    font-size: 24px;
+  }
+
+  .measurements-group dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .measurements-group div {
+    display: grid;
+    min-height: 70px;
+    align-content: space-between;
+    gap: 8px;
+    padding: 11px;
+    background: rgba(255, 250, 243, 0.055);
+    border: 1px solid rgba(255, 250, 243, 0.09);
+    border-radius: 6px;
+  }
+
+  .measurements-group dd {
+    text-align: left;
+  }
+
+  .measurements-group em {
+    display: block;
+    margin-top: 2px;
+  }
+
+  .measurements-appearance {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: hidden;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+
   .measurements-appearance div {
-    border-right: 0;
+    display: grid;
+    gap: 7px;
+    min-height: 74px;
+    padding: 15px;
+    border-right: 1px solid rgba(255, 250, 243, 0.16);
     border-bottom: 1px solid rgba(255, 250, 243, 0.16);
   }
 
-  .measurements-appearance div:last-child {
+  .measurements-appearance div:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .measurements-appearance div:nth-last-child(-n + 2) {
     border-bottom: 0;
+  }
+
+  .measurements-appearance span {
+    line-height: 1.35;
   }
 
   .identity-list article {
@@ -2132,6 +2238,25 @@ h3 {
 
   .footer-contact-pill {
     border-bottom: 1px solid rgba(255, 250, 243, 0.14);
+  }
+
+  .booking-showpiece {
+    min-width: 0;
+  }
+
+  .booking-email {
+    max-width: 100%;
+    font-size: clamp(25px, 8.2vw, 36px);
+    line-height: 1;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .footer-contact-pill span:last-child {
+    font-size: 12px;
+    line-height: 1.45;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 }
 
@@ -2167,31 +2292,18 @@ h3 {
   }
 
   .measurements-stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .mstat,
   .mstat:nth-child(2n),
   .mstat:nth-child(3n) {
-    min-height: 128px;
-    border-right: 0;
-  }
-
-  .mstat + .mstat {
-    border-top: 1px solid rgba(255, 250, 243, 0.18);
+    min-height: 98px;
+    border: 0;
   }
 
   .measurements-group {
-    padding: 20px;
-  }
-
-  .measurements-group div {
-    display: grid;
-    gap: 4px;
-  }
-
-  .measurements-group dd {
-    text-align: left;
+    flex-basis: calc(100vw - 42px);
   }
 }
 
