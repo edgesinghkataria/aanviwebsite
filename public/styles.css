@@ -119,6 +119,7 @@ img,
 video {
   display: block;
   max-width: 100%;
+  height: auto;
   transition: all 0.8s var(--ease-subtle);
 }
 

@@ -61,6 +61,84 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 
 const getImage = (slotName) => portfolioImages[imageSlotOrder.indexOf(slotName)] || "";
 
+// ========== RESPONSIVE IMAGE LOADING ==========
+/*
+  Images are served from assets.aanvikarmakar.com. When Cloudflare Image
+  Transformations is enabled on that zone, /cdn-cgi/image/ serves resized,
+  WebP/AVIF copies, so phones download a fraction of the full photo.
+  A tiny probe checks whether resizing works; if it doesn't, every image
+  falls back to the original file, exactly as before.
+*/
+const ASSET_ORIGIN = "https://assets.aanvikarmakar.com";
+const RESIZE_WIDTHS = [480, 800, 1200, 1600, 2000];
+const RESIZE_CACHE_KEY = "aanvi:image-resize";
+
+const resizedUrl = (src, width) => {
+  if (!src.startsWith(`${ASSET_ORIGIN}/`)) return src;
+  const path = src.slice(ASSET_ORIGIN.length + 1);
+  return `${ASSET_ORIGIN}/cdn-cgi/image/width=${width},quality=82,format=auto/${path}`;
+};
+
+const buildSrcset = (src) =>
+  RESIZE_WIDTHS.map((width) => `${resizedUrl(src, width)} ${width}w`).join(", ");
+
+const readResizeCache = () => {
+  try {
+    return sessionStorage.getItem(RESIZE_CACHE_KEY);
+  } catch (error) {
+    return null;
+  }
+};
+
+const writeResizeCache = (value) => {
+  try {
+    sessionStorage.setItem(RESIZE_CACHE_KEY, value);
+  } catch (error) {
+    // Storage can be unavailable (private mode); the probe simply reruns.
+  }
+};
+
+const resizeSupport = new Promise((resolve) => {
+  const cached = readResizeCache();
+  if (cached) {
+    resolve(cached === "yes");
+    return;
+  }
+
+  const probe = new Image();
+  const finish = (supported) => {
+    writeResizeCache(supported ? "yes" : "no");
+    resolve(supported);
+  };
+  const timer = setTimeout(() => finish(false), 2500);
+  probe.onload = () => {
+    clearTimeout(timer);
+    finish(probe.naturalWidth > 0 && probe.naturalWidth <= 32);
+  };
+  probe.onerror = () => {
+    clearTimeout(timer);
+    finish(false);
+  };
+  probe.src = resizedUrl(portfolioImages[0], 16);
+});
+
+const applyImageSource = (image, src, sizes, useResize) => {
+  if (useResize && sizes) {
+    image.addEventListener(
+      "error",
+      () => {
+        image.removeAttribute("srcset");
+        image.removeAttribute("sizes");
+        image.src = src;
+      },
+      { once: true }
+    );
+    image.sizes = sizes;
+    image.srcset = buildSrcset(src);
+  }
+  image.src = src;
+};
+
 // Load portfolio images
 document.querySelectorAll(".js-sequence-image").forEach((image) => {
   const src = getImage(image.dataset.slot);
@@ -69,29 +147,60 @@ document.querySelectorAll(".js-sequence-image").forEach((image) => {
     return;
   }
 
-  image.src = src;
+  // The hero is above the fold and preloaded in <head>: show it immediately.
+  if (image.dataset.slot === "hero") {
+    image.src = src;
+    return;
+  }
+
+  resizeSupport.then((useResize) => applyImageSource(image, src, image.dataset.sizes, useResize));
 });
 
-// Load video
+// Load the reel only when it nears the viewport, so the MP4 doesn't
+// compete with the photos on first load. The poster shows until then.
 document.querySelectorAll("[data-video-slot]").forEach((video) => {
   const src = getImage(video.dataset.videoSlot);
-  if (src) {
+  if (!src) return;
+
+  const attachVideo = () => {
+    video.preload = "metadata";
     video.src = src;
     video.load();
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    attachVideo();
+    return;
   }
+
+  const videoObserver = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        videoObserver.disconnect();
+        attachVideo();
+      }
+    },
+    { rootMargin: "400px 0px" }
+  );
+  videoObserver.observe(video);
 });
 
 // Gallery creation
 const gallery = document.querySelector("[data-gallery='character']");
 const characterImages = portfolioImages.slice(imageSlotOrder.length);
+const gallerySizes = "(max-width: 520px) 100vw, (max-width: 800px) 50vw, 400px";
 
 characterImages.forEach((src, index) => {
   const figure = document.createElement("figure");
   figure.className = "gallery-card";
 
   const image = document.createElement("img");
-  image.src = src;
+  image.loading = "lazy";
+  image.decoding = "async";
+  image.width = 1200;
+  image.height = 1600;
   image.alt = characterCaptions[index] || `Aanvi Karmakar character still ${index + 1}`;
+  resizeSupport.then((useResize) => applyImageSource(image, src, gallerySizes, useResize));
 
   const caption = document.createElement("figcaption");
   caption.innerHTML = `<span>${characterCaptions[index] || "Portfolio still"}</span><em>${String(index + 1).padStart(2, "0")}</em>`;
