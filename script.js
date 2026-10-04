@@ -55,6 +55,10 @@ const characterCaptions = [
   "Floral fantasies and sunlight serenades"
 ];
 
+document.documentElement.classList.add("js");
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 const getImage = (slotName) => portfolioImages[imageSlotOrder.indexOf(slotName)] || "";
 
 // Load portfolio images
@@ -134,18 +138,82 @@ document.querySelectorAll('.designer-row').forEach(row => {
 const heroImage = document.querySelector('.hero-image');
 const heroSection = document.querySelector('.hero');
 
-if (heroImage && heroSection) {
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-    const scrollProgress = scrolled / heroBottom;
+if (heroImage && heroSection && !prefersReducedMotion) {
+  let parallaxQueued = false;
 
-    if (scrollProgress < 1) {
-      const parallaxAmount = scrolled * 0.4;
-      heroImage.style.transform = `translateY(${parallaxAmount}px)`;
-    }
+  window.addEventListener('scroll', () => {
+    if (parallaxQueued) return;
+    parallaxQueued = true;
+
+    requestAnimationFrame(() => {
+      parallaxQueued = false;
+      const scrolled = window.scrollY;
+      if (scrolled < heroSection.offsetTop + heroSection.offsetHeight) {
+        heroImage.style.transform = `translateY(${scrolled * 0.4}px)`;
+      }
+    });
   }, { passive: true });
 }
+
+// ========== HEADER & NAVIGATION ==========
+const siteHeader = document.querySelector('.site-header');
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelectorAll('#site-nav a');
+
+const setMenuOpen = (open) => {
+  siteHeader.classList.toggle('is-open', open);
+  navToggle.setAttribute('aria-expanded', String(open));
+};
+
+if (siteHeader) {
+  const updateHeader = () => {
+    siteHeader.classList.toggle('is-scrolled', window.scrollY > 40);
+  };
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+}
+
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    setMenuOpen(navToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => setMenuOpen(false));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && siteHeader.classList.contains('is-open')) {
+      setMenuOpen(false);
+      navToggle.focus();
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!siteHeader.contains(event.target)) setMenuOpen(false);
+  });
+}
+
+// Highlight the nav link for the section currently on screen
+const navSections = [...navLinks]
+  .map((link) => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    navLinks.forEach((link) => {
+      const isCurrent = link.getAttribute('href') === `#${entry.target.id}`;
+      if (isCurrent) {
+        link.setAttribute('aria-current', 'true');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+
+navSections.forEach((section) => sectionObserver.observe(section));
 
 // ========== INTRO CARD REVEAL ==========
 const introCard = document.querySelector('.intro-card');
@@ -234,17 +302,4 @@ measurementsParts.forEach((el) => {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   mObserver.observe(el);
-});
-
-// ========== IMAGE HOVER SCALE EFFECT ==========
-document.querySelectorAll('.js-sequence-image').forEach(img => {
-  img.addEventListener('mouseenter', function() {
-    if (!this.classList.contains('is-empty')) {
-      this.style.transform = 'scale(1.01)';
-    }
-  });
-
-  img.addEventListener('mouseleave', function() {
-    this.style.transform = 'scale(1)';
-  });
 });

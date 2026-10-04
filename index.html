@@ -37,11 +37,20 @@
     <link rel="stylesheet" href="./styles.css?v=20260513-22">
   </head>
   <body>
+    <a class="skip-link" href="#work">Skip to portfolio</a>
     <header class="site-header" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="Aanvi Karmakar home">Aanvi Karmakar</a>
-      <nav class="nav-links" aria-label="Main">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="nav-toggle-label">Menu</span>
+      </button>
+      <nav class="nav-links" id="site-nav" aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#reel">Reel</a>
+        <a href="#work">Work</a>
+        <a href="#gallery">Gallery</a>
         <a href="#measurements">Measurements</a>
-        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="#contact">Book Aanvi</a>
       </nav>
     </header>
 
@@ -52,6 +61,9 @@
           <p>Model<br>Actress<br>Performer</p>
           <a class="hero-button" href="#work">View My Work</a>
         </div>
+        <a class="scroll-cue" href="#about" aria-label="Scroll to about">
+          <span>Scroll</span>
+        </a>
         <h1 id="hero-title"><span class="reveal-line"><span>Aanvi</span></span><span class="reveal-line"><span>Karmakar</span></span></h1>
       </section>
 
@@ -63,7 +75,7 @@
         </div>
       </section>
 
-      <section class="about-strip" id="resume" aria-labelledby="about-heading">
+      <section class="about-strip" id="about" aria-labelledby="about-heading">
         <article class="about-tile">
           <h2 id="about-heading">Breathing Life into Character</h2>
         </article>
@@ -80,7 +92,7 @@
         </article>
       </section>
 
-      <section class="reel" aria-labelledby="reel-heading">
+      <section class="reel" id="reel" aria-labelledby="reel-heading">
         <div class="section-heading">
           <p class="script-label">The Reel</p>
           <h2 id="reel-heading">A Glimpse into<br>My On-Screen Work</h2>
@@ -190,7 +202,7 @@
         </article>
       </section>
 
-      <section class="character" aria-labelledby="character-heading">
+      <section class="character" id="gallery" aria-labelledby="character-heading">
         <div class="character-title">
           <h2 id="character-heading">In Character</h2>
           <p>A Collection of Headshots<br>and Production Stills</p>
