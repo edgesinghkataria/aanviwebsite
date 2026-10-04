@@ -123,6 +123,7 @@ const resizeSupport = new Promise((resolve) => {
 });
 
 const applyImageSource = (image, src, sizes, useResize) => {
+  image.dataset.fullSrc = src;
   if (useResize && sizes) {
     image.addEventListener(
       "error",
@@ -193,13 +194,14 @@ const gallerySizes = "(max-width: 520px) 100vw, (max-width: 800px) 50vw, 400px";
 characterImages.forEach((src, index) => {
   const figure = document.createElement("figure");
   figure.className = "gallery-card";
+  figure.dataset.caption = characterCaptions[index] || "Portfolio still";
 
   const image = document.createElement("img");
   image.loading = "lazy";
   image.decoding = "async";
   image.width = 1200;
   image.height = 1600;
-  image.alt = characterCaptions[index] || `Aanvi Karmakar character still ${index + 1}`;
+  image.alt = `Aanvi Karmakar in character, gallery still ${index + 1} of ${characterImages.length}`;
   resizeSupport.then((useResize) => applyImageSource(image, src, gallerySizes, useResize));
 
   const caption = document.createElement("figcaption");
@@ -398,7 +400,7 @@ sectionHeadings.forEach(heading => {
 
 // ========== MEASUREMENTS SECTION ANIMATIONS ==========
 const measurementsParts = document.querySelectorAll(
-  '.measurements-header, .measurements-stats, .measurements-detail, .measurements-appearance'
+  '.measurements-header, .measurements-stats, .measurements-detail'
 );
 
 measurementsParts.forEach((el) => {
@@ -411,4 +413,125 @@ measurementsParts.forEach((el) => {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   mObserver.observe(el);
+});
+
+// ========== IMAGE VIEWER ==========
+const lightbox = document.querySelector(".lightbox");
+const lightboxImage = lightbox?.querySelector("img");
+const lightboxCaption = lightbox?.querySelector(".lightbox-caption");
+const lightboxCount = lightbox?.querySelector(".lightbox-count");
+const lightboxClose = lightbox?.querySelector(".lightbox-close");
+const lightboxPrev = lightbox?.querySelector(".lightbox-prev");
+const lightboxNext = lightbox?.querySelector(".lightbox-next");
+const transparentPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+const lightboxImages = [...document.querySelectorAll(".catalog-card img, .designer-media img, .gallery-card img")]
+  .filter((image) => !image.classList.contains("is-empty"));
+let lightboxIndex = -1;
+let lightboxReturnFocus = null;
+
+const isLightboxOpen = () => Boolean(lightbox && !lightbox.hidden);
+const getLightboxCaption = (image) => image.dataset.caption || image.closest(".gallery-card")?.dataset.caption || "";
+
+const preloadImage = (index) => {
+  const image = lightboxImages[index];
+  const src = image && (image.dataset.fullSrc || image.currentSrc || image.src);
+  if (src) new Image().src = src;
+};
+
+const showLightboxImage = (index) => {
+  if (!lightboxImage || !lightboxCaption || !lightboxImages.length) return;
+
+  const total = lightboxImages.length;
+  lightboxIndex = (index + total) % total;
+
+  const image = lightboxImages[lightboxIndex];
+  lightboxImage.src = image.dataset.fullSrc || image.currentSrc || image.src;
+  lightboxImage.alt = image.alt;
+  lightboxCaption.textContent = getLightboxCaption(image);
+  if (lightboxCount) lightboxCount.textContent = `${lightboxIndex + 1} / ${total}`;
+
+  preloadImage((lightboxIndex + 1) % total);
+  preloadImage((lightboxIndex - 1 + total) % total);
+};
+
+const openLightbox = (image) => {
+  if (!lightbox) return;
+  const index = lightboxImages.indexOf(image);
+  if (index < 0) return;
+
+  lightboxReturnFocus = image;
+  showLightboxImage(index);
+  lightbox.hidden = false;
+  document.body.classList.add("lightbox-open");
+  lightboxClose?.focus();
+};
+
+const closeLightbox = () => {
+  if (!isLightboxOpen() || !lightboxImage || !lightboxCaption) return;
+  lightbox.hidden = true;
+  lightboxImage.src = transparentPixel;
+  lightboxImage.alt = "";
+  lightboxCaption.textContent = "";
+  if (lightboxCount) lightboxCount.textContent = "";
+  document.body.classList.remove("lightbox-open");
+  lightboxReturnFocus?.focus({ preventScroll: true });
+  lightboxReturnFocus = null;
+};
+
+lightboxImages.forEach((image) => {
+  image.classList.add("is-zoomable");
+  image.tabIndex = 0;
+  image.setAttribute("role", "button");
+  image.setAttribute("aria-haspopup", "dialog");
+  image.addEventListener("click", () => openLightbox(image));
+  image.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openLightbox(image);
+    }
+  });
+});
+
+lightboxClose?.addEventListener("click", closeLightbox);
+lightboxPrev?.addEventListener("click", () => showLightboxImage(lightboxIndex - 1));
+lightboxNext?.addEventListener("click", () => showLightboxImage(lightboxIndex + 1));
+lightbox?.addEventListener("click", (event) => {
+  if (event.target === lightbox || event.target.classList.contains("lightbox-stage")) closeLightbox();
+});
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+lightbox?.addEventListener("touchstart", (event) => {
+  touchStartX = event.touches[0].clientX;
+  touchStartY = event.touches[0].clientY;
+}, { passive: true });
+
+lightbox?.addEventListener("touchend", (event) => {
+  const deltaX = event.changedTouches[0].clientX - touchStartX;
+  const deltaY = event.changedTouches[0].clientY - touchStartY;
+
+  if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+    showLightboxImage(lightboxIndex + (deltaX < 0 ? 1 : -1));
+  } else if (deltaY > 90 && Math.abs(deltaY) > Math.abs(deltaX) * 1.5) {
+    closeLightbox();
+  }
+}, { passive: true });
+
+window.addEventListener("keydown", (event) => {
+  if (!isLightboxOpen()) return;
+
+  if (event.key === "Escape") closeLightbox();
+  if (event.key === "ArrowRight") showLightboxImage(lightboxIndex + 1);
+  if (event.key === "ArrowLeft") showLightboxImage(lightboxIndex - 1);
+
+  if (event.key === "Tab") {
+    const focusable = [lightboxClose, lightboxPrev, lightboxNext].filter(Boolean);
+    const currentIndex = focusable.indexOf(document.activeElement);
+    const nextIndex = event.shiftKey
+      ? (currentIndex <= 0 ? focusable.length - 1 : currentIndex - 1)
+      : (currentIndex + 1) % focusable.length;
+    event.preventDefault();
+    focusable[nextIndex].focus();
+  }
 });
