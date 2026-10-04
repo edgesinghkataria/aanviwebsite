@@ -28,13 +28,15 @@
 <meta name="twitter:title" content="Aanvi Karmakar - Model & Actor Portfolio">
 <meta name="twitter:description" content="Professional model and actor available for bookings. Browse verified portfolio, testimonials, and recent projects.">
 <meta name="twitter:image" content="https://assets.aanvikarmakar.com/IMG_1345.jpeg">
+    <link rel="preconnect" href="https://assets.aanvikarmakar.com">
+    <link rel="preload" as="image" href="https://assets.aanvikarmakar.com/IMG_1344.jpeg" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="./styles.css?v=20260513-22">
+    <link rel="stylesheet" href="./styles.css?v=20261004-1">
   </head>
   <body>
     <header class="site-header" aria-label="Primary navigation">
@@ -47,7 +49,7 @@
 
     <main id="top">
       <section class="hero section-dark" aria-labelledby="hero-title">
-        <img class="hero-image js-sequence-image" data-slot="hero" alt="Aanvi Karmakar editorial portrait">
+        <img class="hero-image js-sequence-image" data-slot="hero" data-sizes="100vw" width="1200" height="1600" fetchpriority="high" decoding="async" alt="Aanvi Karmakar editorial portrait">
         <div class="hero-copy">
           <p>Model<br>Actress<br>Performer</p>
           <a class="hero-button" href="#work">View My Work</a>
@@ -56,7 +58,7 @@
       </section>
 
       <section class="intro-panel" aria-label="Fashion editorial introduction">
-        <img class="intro-image js-sequence-image" data-slot="intro" alt="Aanvi Karmakar in an editorial fashion pose">
+        <img class="intro-image js-sequence-image" data-slot="intro" data-sizes="100vw" width="1200" height="1600" loading="lazy" decoding="async" alt="Aanvi Karmakar in an editorial fashion pose">
         <div class="intro-card">
           <h2>Fashion and editorial model creating expressive, contemporary visual stories.</h2>
           <p>Based between Calcutta and Bombay.</p>
@@ -69,7 +71,7 @@
         </article>
         <article class="about-center">
           <p class="script-label">About</p>
-          <img class="js-sequence-image" data-slot="aboutPortrait" alt="Aanvi Karmakar portrait">
+          <img class="js-sequence-image" data-slot="aboutPortrait" data-sizes="290px" width="1200" height="1600" loading="lazy" decoding="async" alt="Aanvi Karmakar portrait">
         </article>
         <article class="about-tile about-bio">
           <p>
@@ -93,6 +95,9 @@
             controls
             muted
             playsinline
+            preload="none"
+            width="450"
+            height="800"
             poster="https://assets.aanvikarmakar.com/9b48429c-c2d6-4c19-8ac5-3e5b440a8535.jpeg"
             data-video-slot="reelVideo"
             aria-label="Aanvi Karmakar showreel"
@@ -108,7 +113,7 @@
         <h2 id="devdas-heading">Devdas Shoot</h2>
         <div class="catalog-grid">
           <article class="catalog-card">
-            <img class="js-sequence-image" data-slot="devdas1" alt="Devdas catalog 1">
+            <img class="js-sequence-image" data-slot="devdas1" data-sizes="(max-width: 520px) 100vw, (max-width: 800px) 50vw, 33vw" width="1200" height="1600" loading="lazy" decoding="async" alt="Devdas catalog 1">
             <div class="catalog-title">
               <h3>Devdas Catalog 1</h3>
               <span>01</span>
@@ -117,7 +122,7 @@
             <p class="credits">Organized by - AKPH - HTPM<br>Model - @aanvi.me<br>Photography - @capix_photography_<br>Mua - @aronit_makeover_mua<br>Hair - @sampas903<br>Designer - @akash_kumar_kirtaniya<br>Jewellery - @newgourjewellers<br>Location - @muhurat.studio</p>
           </article>
           <article class="catalog-card">
-            <img class="js-sequence-image" data-slot="devdas2" alt="Devdas catalog 2">
+            <img class="js-sequence-image" data-slot="devdas2" data-sizes="(max-width: 520px) 100vw, (max-width: 800px) 50vw, 33vw" width="1200" height="1600" loading="lazy" decoding="async" alt="Devdas catalog 2">
             <div class="catalog-title">
               <h3>Devdas Catalog 2</h3>
               <span>02</span>
@@ -126,7 +131,7 @@
             <p class="credits">Organized by - AKPH - HTPM<br>Model - @aanvi.me<br>Photography - @capix_photography_<br>Mua - @aronit_makeover_mua<br>Hair - @sampas903<br>Designer - @akash_kumar_kirtaniya<br>Jewellery - @newgourjewellers<br>Location - @muhurat.studio</p>
           </article>
           <article class="catalog-card">
-            <img class="js-sequence-image" data-slot="devdas3" alt="Devdas catalog 3">
+            <img class="js-sequence-image" data-slot="devdas3" data-sizes="(max-width: 520px) 100vw, (max-width: 800px) 50vw, 33vw" width="1200" height="1600" loading="lazy" decoding="async" alt="Devdas catalog 3">
             <div class="catalog-title">
               <h3>Devdas Catalog 3</h3>
               <span>03</span>
@@ -145,7 +150,7 @@
 
         <article class="designer-row">
           <div class="designer-media wide">
-            <img class="js-sequence-image" data-slot="designer1" alt="Ashoka catalog 1">
+            <img class="js-sequence-image" data-slot="designer1" data-sizes="(max-width: 800px) 100vw, 60vw" width="1200" height="1600" loading="lazy" decoding="async" alt="Ashoka catalog 1">
           </div>
           <div class="designer-text">
             <h3>Ashoka Catalog 1</h3>
@@ -156,9 +161,9 @@
 
         <article class="designer-row">
           <div class="designer-media trio">
-            <img class="js-sequence-image" data-slot="designer2" alt="Ashoka catalog 2 look 1">
-            <img class="js-sequence-image" data-slot="designer3" alt="Ashoka catalog 2 look 2">
-            <img class="js-sequence-image" data-slot="designer4" alt="Ashoka catalog 2 look 3">
+            <img class="js-sequence-image" data-slot="designer2" data-sizes="(max-width: 800px) 33vw, 20vw" width="1200" height="1600" loading="lazy" decoding="async" alt="Ashoka catalog 2 look 1">
+            <img class="js-sequence-image" data-slot="designer3" data-sizes="(max-width: 800px) 33vw, 20vw" width="1200" height="1600" loading="lazy" decoding="async" alt="Ashoka catalog 2 look 2">
+            <img class="js-sequence-image" data-slot="designer4" data-sizes="(max-width: 800px) 33vw, 20vw" width="1200" height="1600" loading="lazy" decoding="async" alt="Ashoka catalog 2 look 3">
           </div>
           <div class="designer-text">
             <h3>Ashoka Catalog 2</h3>
@@ -169,7 +174,7 @@
 
         <article class="designer-row">
           <div class="designer-media wide">
-            <img class="js-sequence-image" data-slot="designer5" alt="Sindoor daan look 1">
+            <img class="js-sequence-image" data-slot="designer5" data-sizes="(max-width: 800px) 100vw, 60vw" width="1200" height="1600" loading="lazy" decoding="async" alt="Sindoor daan look 1">
           </div>
           <div class="designer-text">
             <h3>Sindoor Daan Look - 1</h3>
@@ -180,7 +185,7 @@
 
         <article class="designer-row">
           <div class="designer-media wide">
-            <img class="js-sequence-image" data-slot="designer6" alt="Sindoor daan look 2">
+            <img class="js-sequence-image" data-slot="designer6" data-sizes="(max-width: 800px) 100vw, 60vw" width="1200" height="1600" loading="lazy" decoding="async" alt="Sindoor daan look 2">
           </div>
           <div class="designer-text">
             <h3>Sindoor Daan Look - 2</h3>
@@ -372,6 +377,6 @@
       <p class="copyright">© 2026 Aanvi Karmakar. All rights reserved.</p>
     </footer>
 
-    <script src="./script.js"></script>
+    <script src="./script.js?v=20261004-1"></script>
   </body>
 </html>
