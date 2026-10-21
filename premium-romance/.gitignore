@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+.wrangler/
+qa/
+
+# Keep the standalone static site tracked despite the parent repository ignore rule.
+!dist/
