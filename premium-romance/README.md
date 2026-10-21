@@ -6,7 +6,7 @@ A standalone, fictional satire about treating relationships like financial produ
 
 Requires Node.js. In this folder, run `npm run dev`, then open http://127.0.0.1:48163. To use a different port, run `PORT=48164 npm run dev`. Run `npm run check` for JavaScript syntax checks.
 
-The deployable website is entirely inside this folder’s `dist/`. The project is isolated in `premium-romance/` on the `codex/premium-romance` branch of the existing repository. Run its commands from this folder. The original website files and hosting configuration are unchanged; this project has its own preview script and no deployment command.
+The deployable website is entirely inside this folder’s `dist/`. The project is isolated in `premium-romance/` on the `codex/premium-romance` branch of the existing repository. Run its commands from this folder. The original portfolio HTML and assets remain in the repository. On this branch, the root Wrangler configuration serves `premium-romance/dist` on the existing `aanviwebsite` Pages project and its custom domain. This folder retains its independent local preview script.
 
 ## Interactions
 
@@ -22,16 +22,20 @@ The editorial section reuses two existing portfolio photos at their original ass
 
 Visible copy distinguishes editorial photography from the fictional products, quotes and scenarios. All testimonials are labelled as invented. The site remains set to `noindex, nofollow` while it is a local review project.
 
-## Deployment instructions (only after explicit approval)
+## Cloudflare production deployment
 
-See `REVIEW.md` for the latest copy, design and interaction review, including its verification limits.
+The user authorised publishing this satire on **https://aanvikarmakar.com/** on 21 October 2026.
 
-Nothing has been published. Do not run the existing Aanvi site's deploy command.
+- Existing Pages project: `aanviwebsite`.
+- Production branch configured in Cloudflare: `codex/premium-romance`.
+- Root Wrangler build output: `./premium-romance/dist`.
+- The site is buildless; no build command is required.
+- Push this branch to trigger the connected Git deployment. For an explicit direct upload from the repository root, use `npx wrangler pages deploy premium-romance/dist --project-name aanviwebsite --branch codex/premium-romance`.
+- Verify the main domain's HTML, CSS and JavaScript against this folder after deployment.
+- Keep the existing `noindex, nofollow` metadata and visible fiction/photo disclosures.
 
-1. Choose a **new, separate** static hosting project and hostname unrelated to the existing personal website.
-2. Confirm permission to publish the portfolio photography at the chosen destination, or replace the two images with approved editorial assets.
-3. Upload **only the contents of `dist/`** to the new static host. No build command or environment variables are needed.
-4. Keep the visible fiction and photo-context disclosures. Review whether to retain the current `noindex, nofollow` metadata.
-5. Verify the selected hostname, mobile layout, photos, dialogs, pricing control and exit interaction before sharing.
+Before this release, the portfolio was served by deployment `73240049-241f-4e70-92dc-d9b3ad2719d7` (`https://73240049.aanviwebsite.pages.dev`). This deployment remains the rollback target for the portfolio. A local copy of its production deployment listing and homepage was saved under the repository's ignored `.wrangler/` directory.
 
-No deployment integration or automatic publish script is configured.
+The separate `premium-romance` Pages project was created before the user specified the main domain. It has no deployed version and is not used by this release.
+
+See `REVIEW.md` for the local copy, design and interaction review. Earlier “nothing published” statements in review/verification notes record their pre-deployment state.
